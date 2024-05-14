@@ -1,0 +1,105 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C dependencies (cuidado, puedes necesitar incluir archivos específicos aquí si tu proyecto los usa)
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+# General
+__pycache__/
+*.pyc
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Python Debug
+*.pydevproject
+*.pydevworkspace
+
+# SQL Database
+*.sqlite3
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+
+# Translations
+*.mo
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.idea/
+.vscode/
+*.sublime-workspace
+*.komodoproject
+.komodotools/
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# pycodestyle
+.tox/
+
+# Rope project settings
+.ropeproject
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences
+*.tmTheme
+*.sublime-workspace
+*.sublime-project
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+# built application files
+*.apk
+*.exe
+*.o
+*.out
+*.so
+
+# untracked build artifacts
+dist/
+node_modules/
+bower_components/
+
+# dotenv
+.env
