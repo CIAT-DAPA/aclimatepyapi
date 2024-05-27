@@ -2,6 +2,7 @@ from geographic import Geographic
 from forecast import Forecast
 from agronomy import Agronomy
 from historical import Historical
+from geoserver import Geoserver
 
 def main():
     g = Geographic("https://webapi.aclimate.org/api/")
@@ -12,6 +13,8 @@ def main():
     print(a.get_agronomy())
     h = Historical("https://webapi.aclimate.org/api/")
     print(h.get_historical_climatology(["5a7e422057d7f316c8bc574e"]))
+    gs = Geoserver("https://geo.aclimate.org/geoserver/")
+    print(gs.get_geo_workspaces())
 
 if __name__ == "__main__":
     main()
