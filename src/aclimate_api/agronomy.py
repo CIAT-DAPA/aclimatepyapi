@@ -7,18 +7,18 @@ class Agronomy:
     def __init__(self, url_root):
         self.url_root = url_root
 
-    """
-    Retrieves agronomy data from the API.
-
-    Returns:
-        dict: A dictionary containing two DataFrames: 'cultivars' and 'soils'.
-            The 'cultivars' DataFrame contains information about different cultivars,
-            including crop ID, crop name, cultivar ID, cultivar name, rainfed status,
-            and national status.
-            The 'soils' DataFrame contains information about different soils,
-            including crop ID, crop name, soil ID, and soil name.
-    """
     def get_agronomy(self):
+        """
+        Retrieves agronomy data from the API.
+
+        Returns:
+            dict: A dictionary containing two DataFrames: 'cultivars' and 'soils'.
+                The 'cultivars' DataFrame contains information about different cultivars,
+                including crop ID, crop name, cultivar ID, cultivar name, rainfed status,
+                and national status.
+                The 'soils' DataFrame contains information about different soils,
+                including crop ID, crop name, soil ID, and soil name.
+        """
         try:
             url = f"{self.url_root}Agronomic/true/json"
             response = requests.get(url)
