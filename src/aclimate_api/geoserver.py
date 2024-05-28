@@ -13,15 +13,12 @@ class Geoserver:
         self.url_root = url_root
 
     def get_geo_workspaces(self):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        config_file = os.path.join(current_dir, '../../geo_config.txt')
-
-        with open(config_file, "r") as f:
-            credentials = dict(line.strip().split('=') for line in f.readlines())
+        user = os.getenv("GEOSERVER_USER")
+        password = os.getenv("GEOSERVER_PASSWORD")
         
         url = f"{self.url_root}/rest/workspaces.json"
 
-        response = requests.get(url, auth=(credentials['GEOSERVER_USER'], credentials['GEOSERVER_PASSWORD']))
+        response = requests.get(url, auth=(user, password))
         
         data = json.loads(response.text)
         workspaces_list = data['workspaces']['workspace']
@@ -31,15 +28,12 @@ class Geoserver:
     # print(get_geo_workspaces("https://geo.aclimate.org/geoserver/"))
 
     def get_geo_mosaic_name(self, workspace):    
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        config_file = os.path.join(current_dir, '../../geo_config.txt')
-
-        with open(config_file, "r") as f:
-            credentials = dict(line.strip().split('=') for line in f.readlines())
+        user = os.getenv("GEOSERVER_USER")
+        password = os.getenv("GEOSERVER_PASSWORD")
         
         url = f"{self.url_root}/rest/workspaces/{workspace}/coveragestores.json"
 
-        response = requests.get(url, auth=(credentials['GEOSERVER_USER'], credentials['GEOSERVER_PASSWORD']))
+        response = requests.get(url, auth=(user, password))
         
         if response.status_code == 200:
             data = json.loads(response.text)
@@ -77,14 +71,11 @@ class Geoserver:
     # print(get_geo_mosaics("https://geo.aclimate.org/geoserver/", "waterpoints_et", "biomass", 2024, 4, 22))
 
     def get_geo_polygon_name(self, workspace):
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        config_file = os.path.join(current_dir, '../../geo_config.txt')
-
-        with open(config_file, "r") as f:
-            credentials = dict(line.strip().split('=') for line in f.readlines())
+        user = os.getenv("GEOSERVER_USER")
+        password = os.getenv("GEOSERVER_PASSWORD")
 
         url = f"{self.url_root}rest/workspaces/{workspace}/datastores.json"
-        response = requests.get(url, auth=(credentials['GEOSERVER_USER'], credentials['GEOSERVER_PASSWORD']))
+        response = requests.get(url, auth=(user, password))
 
         if response.status_code == 200:
             data = json.loads(response.text)
