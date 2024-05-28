@@ -38,7 +38,7 @@ class TestGeoserver(unittest.TestCase):
         workspace = "waterpoints_et"
         mock_get.return_value.status_code = 200
         mock_get.return_value.text = geo_mosaic_name_mock_data
-        print(geo_mosaic_name_mock_data)
+       
         result = self.geoserver.get_geo_mosaic_name(workspace)
         
         self.assertIsInstance(result, pd.DataFrame)
