@@ -14,7 +14,7 @@ permissions:
   contents: read
 
 env:
-  GEOSERVER_USERNAME: ${{secrets.GEOSERVER_USERNAME}}
+  GEOSERVER_USER: ${{secrets.GEOSERVER_USER}}
   GEOSERVER_PASSWORD: ${{secrets.GEOSERVER_PASSWORD}}
 
 jobs:
@@ -40,9 +40,9 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r ./requirements.txt
-    - name: Create credentials file
+    - name: Create environment variables
       run: |
-        export GEOSERVER_USER=${{env.GEOSERVER_USERNAME}}
+        export GEOSERVER_USER=${{env.GEOSERVER_USER}}
         export GEOSERVER_PASSWORD=${{env.GEOSERVER_PASSWORD}}
     - name: Run Tests
       run: |
