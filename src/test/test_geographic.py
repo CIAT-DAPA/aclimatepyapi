@@ -5,7 +5,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.aclimate_api.geographic import Geographic
+from aclimate_api.geographic import Geographic
 from test.mock.mock_geographic import geographic_country_mock_data, geographic_mock_data, geographic_ws_mock_data
 
 url_root = "https://webapi.aclimate.org/api/"
