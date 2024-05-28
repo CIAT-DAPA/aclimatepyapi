@@ -5,7 +5,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.aclimate_api.historical import Historical
+from aclimate_api.historical import Historical
 from test.mock.mock_historical import historical_climatology_mock_data, historical_climatic_mock_data, yield_years_mock_data, yield_mock_data
 
 url_root = "https://webapi.aclimate.org/api/"

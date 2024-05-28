@@ -5,7 +5,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.aclimate_api.forecast import Forecast
+from aclimate_api.forecast import Forecast
 from test.mock.mock_forecast import forecast_climate_mock_data, forecast_crop_mock_data, forecast_information_mock_data, forecast_subseasonal_mock_data, forecast_climate_previous_mock_data, forecast_crop_previous_mock_data, forecast_crop_ext_mock_data
 
 url_root = "https://webapi.aclimate.org/api/"

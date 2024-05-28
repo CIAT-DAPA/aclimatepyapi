@@ -9,7 +9,7 @@ from rasterio.io import MemoryFile
 import geopandas as gpd
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.aclimate_api.geoserver import Geoserver
+from aclimate_api.geoserver import Geoserver
 from test.mock.mock_geoserver import geo_workspace_mock_data, geo_mosaic_name_mock_data, geo_polygon_name_mock_data, geo_polygon_mock_data
 
 url_root = "https://webapi.aclimate.org/api/"

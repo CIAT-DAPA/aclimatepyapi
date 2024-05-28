@@ -5,7 +5,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from src.aclimate_api.agronomy import Agronomy
+from aclimate_api.agronomy import Agronomy
 from test.mock.mock_agronomy import agronomy_mock_data
 
 url_root = "https://webapi.aclimate.org/api/"
