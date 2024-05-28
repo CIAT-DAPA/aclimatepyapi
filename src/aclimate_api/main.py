@@ -1,4 +1,3 @@
-import os
 from geographic import Geographic
 from forecast import Forecast
 from agronomy import Agronomy
