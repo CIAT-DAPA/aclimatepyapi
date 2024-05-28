@@ -7,20 +7,19 @@ class Forecast:
     def __init__(self, url_root):
         self.url_root = url_root
         
-
-    """
-    Retrieves the forecast climate data for the given weather stations.
-
-    Args:
-        stations (list): A list of weather station IDs.
-
-    Returns:
-        dict: A dictionary containing the forecast climate data, including probabilities,
-                performance, and scenarios. The keys of the dictionary are 'probabilities',
-                'performance', and 'scenarios', and the values are pandas DataFrames.
-
-    """
     def get_forecast_climate(self, stations):
+        """
+        Retrieves the forecast climate data for the given weather stations.
+
+        Args:
+            stations (list): A list of weather station IDs.
+
+        Returns:
+            dict: A dictionary containing the forecast climate data, including probabilities,
+                    performance, and scenarios. The keys of the dictionary are 'probabilities',
+                    'performance', and 'scenarios', and the values are pandas DataFrames.
+
+        """
         try:
             ws = ",".join(stations)
             url = f"{self.url_root}Forecast/Climate/{ws}/true/json"
@@ -81,16 +80,17 @@ class Forecast:
         return forecast_climate
 
     # print(get_forecast_climate("https://webapi.aclimate.org/api/", ["5a7e422057d7f316c8bc574e"]))
-    """
-    Retrieves the forecast yield data for the specified weather stations.
-
-    Args:
-        stations (list): A list of weather station IDs.
-
-    Returns:
-        pandas.DataFrame: A DataFrame containing the forecast yield data for the specified weather stations.
-    """
+    
     def get_forecast_crop(self, stations):
+        """
+        Retrieves the forecast yield data for the specified weather stations.
+
+        Args:
+            stations (list): A list of weather station IDs.
+
+        Returns:
+            pandas.DataFrame: A DataFrame containing the forecast yield data for the specified weather stations.
+        """
         try:
             ws = ",".join(stations)
             url = f"{self.url_root}Forecast/Yield/{ws}/json"
@@ -129,7 +129,8 @@ class Forecast:
 
     # print(get_forecast_crop("https://webapi.aclimate.org/api/", ["5a7e422057d7f316c8bc574e"]))
 
-    """
+    def get_forecast_information(self, year):
+        """
         Retrieves forecast information for a given year.
 
         Args:
@@ -138,7 +139,6 @@ class Forecast:
         Returns:
             pandas.DataFrame: A DataFrame containing the forecast information, including columns for 'id', 'start', 'end', and 'confidence'.
         """
-    def get_forecast_information(self, year):
         try:
             url = f"{self.url_root}Forecast/Log/{year}/json"
             response = requests.get(url)
@@ -175,27 +175,27 @@ class Forecast:
 
     # print(get_forecast_information("https://webapi.aclimate.org/api/", 2021))
 
-    """
-    Retrieves the subseasonal forecast data for the given weather stations.
-
-    Args:
-        stations (list): A list of weather station IDs.
-
-    Returns:
-        pandas.DataFrame: A DataFrame containing the subseasonal forecast data.
-            The DataFrame has the following columns:
-            - weather_station: The ID of the weather station.
-            - year: The year of the forecast.
-            - month: The month of the forecast.
-            - week: The week of the forecast.
-            - measure: The measure of the forecast.
-            - lower: The lower bound of the forecast.
-            - normal: The normal value of the forecast.
-            - upper: The upper bound of the forecast.
-
-            If no subseasonal forecast data is available, an empty DataFrame is returned.
-    """
     def get_forecast_subseasonal(self, stations):
+        """
+        Retrieves the subseasonal forecast data for the given weather stations.
+
+        Args:
+            stations (list): A list of weather station IDs.
+
+        Returns:
+            pandas.DataFrame: A DataFrame containing the subseasonal forecast data.
+                The DataFrame has the following columns:
+                - weather_station: The ID of the weather station.
+                - year: The year of the forecast.
+                - month: The month of the forecast.
+                - week: The week of the forecast.
+                - measure: The measure of the forecast.
+                - lower: The lower bound of the forecast.
+                - normal: The normal value of the forecast.
+                - upper: The upper bound of the forecast.
+
+                If no subseasonal forecast data is available, an empty DataFrame is returned.
+        """
         try:
             ws = ",".join(stations)
             url = f"{self.url_root}Forecast/SubseasonalWS/{ws}/json"
@@ -249,21 +249,21 @@ class Forecast:
     
     # print(get_forecast_subseasonal("https://webapi.aclimate.org/api/", ["5a7e422057d7f316c8bc574e"]))
 
-    """
-    Retrieves the forecast climate data for previous periods.
-
-    Args:
-        forecast (str): The forecast identifier.
-        stations (list): A list of weather station IDs.
-
-    Returns:
-        dict: A dictionary containing the forecast climate data for previous periods.
-            The dictionary has the following keys:
-            - 'probabilities': A pandas DataFrame containing the probability data.
-            - 'performance': A pandas DataFrame containing the performance data.
-            - 'scenarios': A pandas DataFrame containing the scenario data.
-    """
     def get_forecast_climate_previous(self, forecast, stations):
+        """
+        Retrieves the forecast climate data for previous periods.
+
+        Args:
+            forecast (str): The forecast identifier.
+            stations (list): A list of weather station IDs.
+
+        Returns:
+            dict: A dictionary containing the forecast climate data for previous periods.
+                The dictionary has the following keys:
+                - 'probabilities': A pandas DataFrame containing the probability data.
+                - 'performance': A pandas DataFrame containing the performance data.
+                - 'scenarios': A pandas DataFrame containing the scenario data.
+        """
         try:
             ws = ",".join(stations)
             url = f"{self.url_root}Forecast/ClimatePrevious/{forecast}/{ws}/true/json"
@@ -328,17 +328,17 @@ class Forecast:
 
     # print(get_forecast_climate_previous("https://webapi.aclimate.org/api/", "602d1da7a1c81c22b08683b5", ["5a7e422057d7f316c8bc574e"]))
 
-    """
-    Retrieves the previous yield forecast for a given forecast and list of weather stations.
-
-    Args:
-        forecast (str): The forecast identifier.
-        stations (list): A list of weather station identifiers.
-
-    Returns:
-        pandas.DataFrame: A DataFrame containing the forecasted yield data for the specified forecast and weather stations.
-    """
     def get_forecast_crop_previous(self, forecast, stations):
+        """
+        Retrieves the previous yield forecast for a given forecast and list of weather stations.
+
+        Args:
+            forecast (str): The forecast identifier.
+            stations (list): A list of weather station identifiers.
+
+        Returns:
+            pandas.DataFrame: A DataFrame containing the forecasted yield data for the specified forecast and weather stations.
+        """
         try:
             ws = ",".join(stations)
             url = f"{self.url_root}Forecast/YieldPrevious/{forecast}/{ws}/json"
@@ -381,16 +381,16 @@ class Forecast:
 
     # print(get_forecast_crop_previous("https://webapi.aclimate.org/api/", "602d1da7a1c81c22b08683b5", ["5a7e422057d7f316c8bc574e"]))
 
-    """
-    Retrieves the forecast crop exceedance data for the given weather stations.
-
-    Args:
-        stations (list): A list of weather station IDs.
-
-    Returns:
-        pandas.DataFrame: A DataFrame containing the forecast crop exceedance data.
-    """
     def get_forecast_crop_exc(self, stations):  
+        """
+        Retrieves the forecast crop exceedance data for the given weather stations.
+
+        Args:
+            stations (list): A list of weather station IDs.
+
+        Returns:
+            pandas.DataFrame: A DataFrame containing the forecast crop exceedance data.
+        """
         try:
             ws = ",".join(stations)
             url = f"{self.url_root}Forecast/YieldExceedance/{ws}/json"
