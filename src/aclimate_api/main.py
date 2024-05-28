@@ -11,7 +11,7 @@ def main():
     f = Forecast("https://webapi.aclimate.org/api/")
     # print(f.get_forecast_climate(["5a7e422057d7f316c8bc574e"]))
     a = Agronomy("https://webapi.aclimate.org/api/")
-    # print(a.get_agronomy())
+    print(a.get_agronomy())
     h = Historical("https://webapi.aclimate.org/api/")
     # print(h.get_historical_climatology(["5a7e422057d7f316c8bc574e"]))
     gs = Geoserver("https://geo.aclimate.org/geoserver/")
