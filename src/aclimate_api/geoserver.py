@@ -5,22 +5,23 @@ import json
 import re
 import tempfile
 import geopandas as gpd
-import os
 
 class Geoserver:
 
     def __init__(self, url_root):
         self.url_root = url_root
 
-    def get_geo_workspaces(self):
+    def get_geo_workspaces(self, user, password):
         """
         Retrieves the list of GeoServer workspaces.
+
+        Args:
+            user (str): The username for the GeoServer instance.
+            password (str): The password for the GeoServer instance.
 
         Returns:
             pandas.DataFrame: A DataFrame containing the workspace names and their corresponding hrefs.
         """
-        user = os.getenv("GEOSERVER_USER")
-        password = os.getenv("GEOSERVER_PASSWORD")
 
         if not user or not password:
             print("Error: Missing GeoServer credentials")
@@ -57,18 +58,18 @@ class Geoserver:
 
     # print(get_geo_workspaces("https://geo.aclimate.org/geoserver/"))
 
-    def get_geo_mosaic_name(self, workspace):
+    def get_geo_mosaic_name(self, workspace, user, password):
         """
         Retrieves the names and hrefs of the mosaics in the specified GeoServer workspace.
 
         Args:
             workspace (str): The name of the GeoServer workspace.
+            user (str): The username for the GeoServer instance.
+            password (str): The password for the GeoServer instance.
 
         Returns:
             pandas.DataFrame: A DataFrame containing the mosaic names and hrefs, or an empty DataFrame if there was an error.
         """
-        user = os.getenv("GEOSERVER_USER")
-        password = os.getenv("GEOSERVER_PASSWORD")
 
         if not user or not password:
             print("Error: Missing GeoServer credentials")
@@ -155,19 +156,19 @@ class Geoserver:
 
     # print(get_geo_mosaics("https://geo.aclimate.org/geoserver/", "waterpoints_et", "biomass", 2024, 4, 22))
 
-    def get_geo_polygon_name(self, workspace):
+    def get_geo_polygon_name(self, workspace, user, password):
         """
         Retrieves the names and hrefs of polygons from the specified workspace in GeoServer.
 
         Args:
             workspace (str): The name of the workspace in GeoServer.
+            user (str): The username for the GeoServer instance.
+            password (str): The password for the GeoServer instance.
 
         Returns:
             pandas.DataFrame: A DataFrame containing the names and hrefs of the polygons, with columns 'polygon_name' and 'polygon_href'.
                              If no polygons are found or an error occurs, an empty DataFrame is returned.
         """
-        user = os.getenv("GEOSERVER_USER")
-        password = os.getenv("GEOSERVER_PASSWORD")
 
         if not user or not password:
             print("Error: Missing GeoServer credentials")

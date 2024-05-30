@@ -25,7 +25,7 @@ class TestGeoserver(unittest.TestCase):
         mock_get.return_value.status_code = 200
         mock_get.return_value.text = geo_workspace_mock_data
         
-        result = self.geoserver.get_geo_workspaces()
+        result = self.geoserver.get_geo_workspaces("test","pass")
         
         self.assertIsInstance(result, pd.DataFrame)
         self.assertIn("workspace_name", result.columns)
@@ -39,7 +39,7 @@ class TestGeoserver(unittest.TestCase):
         mock_get.return_value.status_code = 200
         mock_get.return_value.text = geo_mosaic_name_mock_data
        
-        result = self.geoserver.get_geo_mosaic_name(workspace)
+        result = self.geoserver.get_geo_mosaic_name(workspace,"test","pass")
         
         self.assertIsInstance(result, pd.DataFrame)
         self.assertIn("mosaic_name", result.columns)
@@ -74,7 +74,7 @@ class TestGeoserver(unittest.TestCase):
         mock_get.return_value.status_code = 200
         mock_get.return_value.text = geo_polygon_name_mock_data
         
-        result = self.geoserver.get_geo_polygon_name(workspace)
+        result = self.geoserver.get_geo_polygon_name(workspace,"test","pass")
         
         self.assertIsInstance(result, pd.DataFrame)
         self.assertIn("polygon_name", result.columns)
