@@ -7,6 +7,7 @@ import os
 from io import BytesIO
 from rasterio.io import MemoryFile
 import geopandas as gpd
+import xarray
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from aclimate_api.geoserver import Geoserver
@@ -66,7 +67,7 @@ class TestGeoserver(unittest.TestCase):
 
         result = self.geoserver.get_geo_mosaics(workspace, mosaic_name, year, month, day)
 
-        self.assertIsInstance(result, np.ndarray)
+        self.assertIsInstance(result, xarray.DataArray)
 
     @patch('requests.get')
     def test_get_geo_polygon_name(self, mock_get):

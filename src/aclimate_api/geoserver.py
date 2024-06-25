@@ -1,10 +1,10 @@
 import requests
 import pandas as pd
-import rasterio
 import json
 import re
 import tempfile
 import geopandas as gpd
+import rioxarray
 
 class Geoserver:
 
@@ -120,7 +120,7 @@ class Geoserver:
             day (int, optional): The day of the mosaic to retrieve. Defaults to 1.
 
         Returns:
-            numpy.ndarray or None: The raster data of the retrieved mosaic as a NumPy array, or None if an error occurred.
+            xarray.Dataset or None: The raster data of the retrieved mosaic as a NumPy array, or None if an error occurred.
         """
         try:
             url = f"{self.url_root}{workspace}/ows?service=WCS&request=GetCoverage&version=2.0.1&coverageId={mosaic_name}&format=image/geotiff&subset=Time(\"{year}-{month:02d}-{day:02d}T00:00:00.000Z\")"
@@ -137,22 +137,13 @@ class Geoserver:
                 with open(temp_tiff, 'wb') as f:
                     f.write(response.content)
 
-                # Load the raster data
-                raster_data = rasterio.open(temp_tiff)
-                return raster_data.read()
+                # Load the raster data using rioxarray
+                raster_data = rioxarray.open_rasterio(temp_tiff)
+                return raster_data
             except Exception as e:
                 print("Error: Failed to write the response content to a temporary file or load the raster data")
                 print(e)
                 return None
-
-        else:
-            match_result = re.findall("<ows:ExceptionText>(.*?)</ows:ExceptionText>", response.text)
-            if match_result:
-                exception_text = match_result[0]
-                print(f"Error making the request. Status code: {response.status_code}\nMsg: {exception_text}")
-            else:
-                print(f"Error making the request. Status code: {response.status_code}")
-            return None
 
     # print(get_geo_mosaics("https://geo.aclimate.org/geoserver/", "waterpoints_et", "biomass", 2024, 4, 22))
 
